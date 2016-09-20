@@ -76,8 +76,12 @@ module ActiveRecord
       def assign_nested_attributes_for_collection_association(association_name, attributes_collection, assignment_opts = {})
         options = self.nested_attributes_options[association_name]
 
-        unless attributes_collection.is_a?(Hash) || attributes_collection.is_a?(Array)
-          raise ArgumentError, "Hash or Array expected, got #{attributes_collection.class.name} (#{attributes_collection.inspect})"
+        class_name = attributes_collection.class.name
+
+        if class_name == 'ActionController::Parameters'
+          attributes_collection = attributes_collection.to_unsafe_h
+        elsif !['Hash','Array'].include?(class_name)
+          raise ArgumentError, "ActionController::Parameters or Hash or Array expected, got #{attributes_collection.class.name} (#{attributes_collection.inspect})"
         end
 
         if limit = options[:limit]
@@ -109,7 +113,7 @@ module ActiveRecord
         existing_records = if association.loaded?
           association.target
         else
-          attribute_ids = attributes_collection.map {|a| a['id'] || a[:id] }.compact
+          attribute_ids = attributes_collection.map{|a| a['id'] || a[:id] }.compact
           attribute_ids.empty? ? [] : association.scope.where(association.klass.primary_key => attribute_ids)
         end
 
