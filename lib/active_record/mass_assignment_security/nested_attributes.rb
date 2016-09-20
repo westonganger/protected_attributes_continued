@@ -76,8 +76,8 @@ module ActiveRecord
       def assign_nested_attributes_for_collection_association(association_name, attributes_collection, assignment_opts = {})
         options = self.nested_attributes_options[association_name]
 
-        unless attributes_collection.is_a?(Hash) || attributes_collection.is_a?(Array)
-          raise ArgumentError, "Hash or Array expected, got #{attributes_collection.class.name} (#{attributes_collection.inspect})"
+        unless ['Hash','Array','ActionController::Parameters'].include?(attributes_collection.class.name)
+          raise ArgumentError, "ActionController::Parameters or Hash or Array expected, got #{attributes_collection.class.name} (#{attributes_collection.inspect})"
         end
 
         if limit = options[:limit]

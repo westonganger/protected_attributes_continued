@@ -1,3 +1,15 @@
+## 1.2.3
+
+* Fixed ArgumentError with nested attributes
+
+## 1.2.2
+
+* Fix for Rails 5
+
+## 1.2.1
+
+* Fix for Rails 5
+
 ## 1.2.0
 
 * Added Rails 5 support, already works just needed the gemspec updated to allow it
