@@ -79,7 +79,7 @@ module ActiveRecord
         class_name = attributes_collection.class.name
 
         if class_name == 'ActionController::Parameters'
-          attributes_collection = attributes_collection.to_h
+          attributes_collection = attributes_collection.to_unsafe_h
         elsif !['Hash','Array'].include?(class_name)
           raise ArgumentError, "ActionController::Parameters or Hash or Array expected, got #{attributes_collection.class.name} (#{attributes_collection.inspect})"
         end
