@@ -1,3 +1,7 @@
+## 1.2.4
+
+* Fixed params type checking with nested attributes
+
 ## 1.2.3
 
 * Fixed ArgumentError with nested attributes

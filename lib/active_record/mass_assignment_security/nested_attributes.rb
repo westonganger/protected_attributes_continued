@@ -76,11 +76,9 @@ module ActiveRecord
       def assign_nested_attributes_for_collection_association(association_name, attributes_collection, assignment_opts = {})
         options = self.nested_attributes_options[association_name]
 
-        class_name = attributes_collection.class.name
-
-        if class_name == 'ActionController::Parameters'
+        if attributes_collection.class.name == 'ActionController::Parameters'
           attributes_collection = attributes_collection.to_unsafe_h
-        elsif !['Hash','Array'].include?(class_name)
+        elsif !attributes_collection.is_a?(Hash) && !attributes_collection.is_a?(Array)
           raise ArgumentError, "ActionController::Parameters or Hash or Array expected, got #{attributes_collection.class.name} (#{attributes_collection.inspect})"
         end
 
