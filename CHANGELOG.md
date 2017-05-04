@@ -1,3 +1,11 @@
+## 1.2.5
+
+* Dont require activerecord in non-activerecord environments
+
+## 1.2.4
+
+* Fixed params type checking with nested attributes
+
 ## 1.2.4
 
 * Fixed params type checking with nested attributes
@@ -18,6 +26,10 @@
 
 * Added Rails 5 support, already works just needed the gemspec updated to allow it
 * New repo `protected_attributes_continued` because Rails refuses to support Rails 5
+
+## END OF protected_attributes_continued CHANGELOG
+
+## OLD protected_attributes CHANGELOG
 
 ## 1.1.3
 
