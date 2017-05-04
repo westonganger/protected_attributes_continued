@@ -8,6 +8,7 @@ rvm:
   - 2.2.6
   - 2.3.3
   - 2.4.0
+  - ruby-head
 
 gemfile:
   - gemfiles/Gemfile-rails-4.0-stable
@@ -21,32 +22,51 @@ gemfile:
   - gemfiles/Gemfile-rails-5.0
   - gemfiles/Gemfile-rails-5.1
 
+env:
+  - ISOLATED=true
+  - ISOLATED=false
+
 matrix:
   exclude:
-  - rvm: 1.9.3
-    gemfile: gemfiles/gemfile-rails-5.0
-  - rvm: 1.9.3
-    gemfile: gemfiles/gemfile-rails-5.0-stable
-  - rvm: 1.9.3
-    gemfile: gemfiles/gemfile-rails-5.1
-  - rvm: 1.9.3
-    gemfile: gemfiles/gemfile-rails-5.1-stable
-  - rvm: 2.0
-    gemfile: gemfiles/gemfile-rails-5.0
-  - rvm: 2.0
-    gemfile: gemfiles/gemfile-rails-5.0-stable
-  - rvm: 2.0
-    gemfile: gemfiles/gemfile-rails-5.1
-  - rvm: 2.0
-    gemfile: gemfiles/gemfile-rails-5.1-stable
-  - rvm: 2.1
-    gemfile: gemfiles/gemfile-rails-5.0
-  - rvm: 2.1
-    gemfile: gemfiles/gemfile-rails-5.0-stable
-  - rvm: 2.1
-    gemfile: gemfiles/gemfile-rails-5.1
-  - rvm: 2.1
-    gemfile: gemfiles/gemfile-rails-5.1-stable
+    - rvm: 1.9.3
+      gemfile: gemfiles/gemfile-rails-5.0
+      env: ISOLATED=true
+    - rvm: 1.9.3
+      gemfile: gemfiles/gemfile-rails-5.0-stable
+      env: ISOLATED=true
+    - rvm: 1.9.3
+      gemfile: gemfiles/gemfile-rails-5.1
+      env: ISOLATED=true
+    - rvm: 1.9.3
+      gemfile: gemfiles/gemfile-rails-5.1-stable
+      env: ISOLATED=true
+    - rvm: 2.0
+      gemfile: gemfiles/gemfile-rails-5.0
+      env: ISOLATED=true
+    - rvm: 2.0
+      gemfile: gemfiles/gemfile-rails-5.0-stable
+      env: ISOLATED=true
+    - rvm: 2.0
+      gemfile: gemfiles/gemfile-rails-5.1
+      env: ISOLATED=true
+    - rvm: 2.0
+      gemfile: gemfiles/gemfile-rails-5.1-stable
+      env: ISOLATED=true
+    - rvm: 2.1
+      gemfile: gemfiles/gemfile-rails-5.0
+      env: ISOLATED=true
+    - rvm: 2.1
+      gemfile: gemfiles/gemfile-rails-5.0-stable
+      env: ISOLATED=true
+    - rvm: 2.1
+      gemfile: gemfiles/gemfile-rails-5.1
+      env: ISOLATED=true
+    - rvm: 2.1
+      gemfile: gemfiles/gemfile-rails-5.1-stable
+      env: ISOLATED=true
+
+  allow_failures:
+    - rvm: ruby-head
 
 notifications:
   email: false
