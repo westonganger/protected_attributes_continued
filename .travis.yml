@@ -24,7 +24,6 @@ gemfile:
 
 env:
   - ISOLATED=true
-  - ISOLATED=false
 
 matrix:
   exclude:
