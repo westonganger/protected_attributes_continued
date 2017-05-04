@@ -23,30 +23,30 @@ gemfile:
 
 matrix:
   exclude:
-    - rvm: 1.9.3
-      gemfile: gemfiles/gemfile-rails-5.0
-    - rvm: 1.9.3
-      gemfile: gemfiles/gemfile-rails-5.0-stable
-    - rvm: 1.9.3
-      gemfile: gemfiles/gemfile-rails-5.1
-    - rvm: 1.9.3
-      gemfile: gemfiles/gemfile-rails-5.1-stable
-    - rvm: 2.0
-      gemfile: gemfiles/gemfile-rails-5.0
-    - rvm: 2.0
-      gemfile: gemfiles/gemfile-rails-5.0-stable
-    - rvm: 2.0
-      gemfile: gemfiles/gemfile-rails-5.1
-    - rvm: 2.0
-      gemfile: gemfiles/gemfile-rails-5.1-stable
-    - rvm: 2.1
-      gemfile: gemfiles/gemfile-rails-5.0
-    - rvm: 2.1
-      gemfile: gemfiles/gemfile-rails-5.0-stable
-    - rvm: 2.1
-      gemfile: gemfiles/gemfile-rails-5.1
-    - rvm: 2.1
-      gemfile: gemfiles/gemfile-rails-5.1-stable
+  - rvm: 1.9.3
+    gemfile: gemfiles/gemfile-rails-5.0
+  - rvm: 1.9.3
+    gemfile: gemfiles/gemfile-rails-5.0-stable
+  - rvm: 1.9.3
+    gemfile: gemfiles/gemfile-rails-5.1
+  - rvm: 1.9.3
+    gemfile: gemfiles/gemfile-rails-5.1-stable
+  - rvm: 2.0
+    gemfile: gemfiles/gemfile-rails-5.0
+  - rvm: 2.0
+    gemfile: gemfiles/gemfile-rails-5.0-stable
+  - rvm: 2.0
+    gemfile: gemfiles/gemfile-rails-5.1
+  - rvm: 2.0
+    gemfile: gemfiles/gemfile-rails-5.1-stable
+  - rvm: 2.1
+    gemfile: gemfiles/gemfile-rails-5.0
+  - rvm: 2.1
+    gemfile: gemfiles/gemfile-rails-5.0-stable
+  - rvm: 2.1
+    gemfile: gemfiles/gemfile-rails-5.1
+  - rvm: 2.1
+    gemfile: gemfiles/gemfile-rails-5.1-stable
 
 notifications:
   email: false
