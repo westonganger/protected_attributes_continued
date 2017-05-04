@@ -11,11 +11,15 @@ This plugin adds the class methods `attr_accessible` and `attr_protected` to you
 
 Add this line to your application's `Gemfile`:
 
-    gem 'protected_attributes_continued'
+```ruby
+gem 'protected_attributes_continued'
+```
 
 And then execute:
 
-    bundle install
+```ruby
+bundle install
+```
 
 ## Usage
 
@@ -28,19 +32,19 @@ attr_protected :admin
 `attr_protected` also optionally takes a role option using `:as` which allows you to define multiple mass-assignment groupings. If no role is defined then attributes will be added to the `:default` role.
 
 ```ruby
-attr_protected :last_login, :as => :admin
+attr_protected :last_login, as: :admin
 ```
 A much better way, because it follows the whitelist-principle, is the `attr_accessible` method. It is the exact opposite of `attr_protected`, because it takes a list of attributes that will be mass-assigned if present. Any other attributes will be ignored. This way you won’t forget to protect attributes when adding new ones in the course of development. Here is an example:
 
 ```ruby
 attr_accessible :name
-attr_accessible :name, :is_admin, :as => :admin
+attr_accessible :name, :is_admin, as: :admin
 ```
 
 If you want to set a protected attribute, you will have to assign it individually:
 
 ```ruby
-params[:user] # => {:name => "owned", :is_admin => true}
+params[:user] # => {name: "owned", is_admin: true}
 @user = User.new(params[:user])
 @user.is_admin # => false, not mass-assigned
 @user.is_admin = true
@@ -54,15 +58,15 @@ You can also bypass mass-assignment security by using the `:without_protection` 
 ```ruby
 @user = User.new
 
-@user.assign_attributes(:name => 'Josh', :is_admin => true)
+@user.assign_attributes(name: 'Josh', is_admin: true)
 @user.name # => Josh
 @user.is_admin # => false
 
-@user.assign_attributes({ :name => 'Josh', :is_admin => true }, :as => :admin)
+@user.assign_attributes({ name: 'Josh', is_admin: true }, as: :admin)
 @user.name # => Josh
 @user.is_admin # => true
 
-@user.assign_attributes({ :name => 'Josh', :is_admin => true }, :without_protection => true)
+@user.assign_attributes({ name: 'Josh', is_admin: true }, without_protection: true)
 @user.name # => Josh
 @user.is_admin # => true
 ```
@@ -70,11 +74,11 @@ You can also bypass mass-assignment security by using the `:without_protection` 
 In a similar way, `new`, `create`, `create!`, `update_attributes` and `update_attributes!` methods all respect mass-assignment security and accept either `:as` or `:without_protection` options. For example:
 
 ```ruby
-@user = User.new({ :name => 'Sebastian', :is_admin => true }, :as => :admin)
+@user = User.new({ name: 'Sebastian', is_admin: true }, as: :admin)
 @user.name # => Sebastian
 @user.is_admin # => true
 
-@user = User.create({ :name => 'Sebastian', :is_admin => true }, :without_protection => true)
+@user = User.create({ name: 'Sebastian', is_admin: true }, without_protection: true)
 @user.name # => Sebastian
 @user.is_admin # => true
 ```
