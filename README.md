@@ -1,6 +1,6 @@
 # Protected Attributes Continued
 
-This is the community continued version of `protected_attributes`. This library is maintained.
+This is the community continued version of `protected_attributes`. This library is maintained and supports Rails 5+
 
 I have created this gem and changed the name because the Rails team refuses to support the `protected_attributes` gem for Rails 5+. For people who would like to continue using this feature in their Rails 5+ apps lets continue here. This is in use successfully on number of my Rails 5 production apps. 
 
@@ -104,5 +104,4 @@ Created and Maintained by [Weston Ganger - @westonganger](https://github.com/wes
 
 Originally forked from the dead/unmaintained `protected_attributes` gem by the Rails team.
 
-<a href='https://www.patreon.com/bePatron?u=4956947' target='_blank'><img height='32' style='border:0px;height:32px;' src='https://miraclesfor.me/wp-content/plugins/patron-button-and-widgets-by-codebard/images/patreon-medium-button.png' border='0' alt='Become a Patron' /></a>
 <a href='https://ko-fi.com/A5071NK' target='_blank'><img height='32' style='border:0px;height:32px;' src='https://az743702.vo.msecnd.net/cdn/kofi1.png?v=a' border='0' alt='Buy Me a Coffee' /></a> 
