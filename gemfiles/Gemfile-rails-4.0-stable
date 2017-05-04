@@ -2,10 +2,16 @@ source 'https://rubygems.org'
 
 gem 'rails', github: 'rails/rails', branch: '4-0-stable'
 
-if RUBY_VERSION > '1.9.3'
+if RUBY_VERSION.to_i > 1
   gem 'mime-types'
 else
   gem 'mime-types', '2.99'
+end
+
+if RUBY_VERSION.to_f > 2
+  gem 'nokogiri'
+else
+  gem 'nokogiri', '~>1.6.0'
 end
 
 gemspec path: '..'
