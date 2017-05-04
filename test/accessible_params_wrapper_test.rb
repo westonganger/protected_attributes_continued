@@ -44,7 +44,7 @@ class AccessibleParamsWrapperTest < ActionController::TestCase
 
     with_default_wrapper_options do
       @request.env['CONTENT_TYPE'] = 'application/json'
-      if Rails::VERSION.to_i > 4
+      if Rails::VERSION::MAJOR > 4
         post :parse, params: { 'username' => 'sikachu', 'title' => 'Developer' }
       else
         post :parse, { 'username' => 'sikachu', 'title' => 'Developer' }
@@ -62,7 +62,7 @@ class AccessibleParamsWrapperTest < ActionController::TestCase
       UsersController.wrap_parameters Person
 
       @request.env['CONTENT_TYPE'] = 'application/json'
-      if Rails::VERSION.to_i > 4
+      if Rails::VERSION::MAJOR > 4
         post :parse, params: { 'username' => 'sikachu', 'title' => 'Developer' }
       else
         post :parse, { 'username' => 'sikachu', 'title' => 'Developer' }
@@ -77,7 +77,7 @@ class AccessibleParamsWrapperTest < ActionController::TestCase
 
     with_default_wrapper_options do
       @request.env['CONTENT_TYPE'] = 'application/json'
-      if Rails::VERSION.to_i > 4
+      if Rails::VERSION::MAJOR > 4
         post :parse, params: { 'username' => 'sikachu', 'title' => 'Developer' }
       else
         post :parse, { 'username' => 'sikachu', 'title' => 'Developer' }

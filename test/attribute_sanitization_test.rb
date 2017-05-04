@@ -271,7 +271,7 @@ class AttributeSanitizationTest < ActiveSupport::TestCase
     firm = Company.new(type: "Firm")
 
     ### TEST IS FAILING, SO I MADE IT PASS
-    if Rails::VERSION > 4
+    if Rails::VERSION::MAJOR > 4
       assert_equal Firm, firm.class
     else
       assert_equal Company, firm.class #original line
