@@ -10,7 +10,7 @@ class CustomSanitizer < ActiveModel::MassAssignmentSecurity::Sanitizer
 
 end
 
-class MassAssignmentSecurityTest < ActiveModel::TestCase
+class MassAssignmentSecurityTest < ActiveSupport::TestCase
   def test_attribute_protection
     user = User.new
     expected = { "name" => "John Smith", "email" => "john@smith.com" }

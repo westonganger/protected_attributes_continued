@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'active_model/mass_assignment_security'
 
-class PermissionSetTest < ActiveModel::TestCase
+class PermissionSetTest < ActiveSupport::TestCase
 
   def setup
     @permission_list = ActiveModel::MassAssignmentSecurity::PermissionSet.new

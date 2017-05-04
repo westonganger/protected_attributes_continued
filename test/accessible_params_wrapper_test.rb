@@ -44,7 +44,7 @@ class AccessibleParamsWrapperTest < ActionController::TestCase
 
     with_default_wrapper_options do
       @request.env['CONTENT_TYPE'] = 'application/json'
-      post :parse, { 'username' => 'sikachu', 'title' => 'Developer' }
+      post :parse, params: { 'username' => 'sikachu', 'title' => 'Developer' }
       assert_parameters({ 'username' => 'sikachu', 'title' => 'Developer', 'user' => { 'username' => 'sikachu' }})
     end
   end
@@ -58,7 +58,7 @@ class AccessibleParamsWrapperTest < ActionController::TestCase
       UsersController.wrap_parameters Person
 
       @request.env['CONTENT_TYPE'] = 'application/json'
-      post :parse, { 'username' => 'sikachu', 'title' => 'Developer' }
+      post :parse, params: { 'username' => 'sikachu', 'title' => 'Developer' }
       assert_parameters({ 'username' => 'sikachu', 'title' => 'Developer', 'person' => { 'username' => 'sikachu' }})
     end
   end
@@ -69,7 +69,7 @@ class AccessibleParamsWrapperTest < ActionController::TestCase
 
     with_default_wrapper_options do
       @request.env['CONTENT_TYPE'] = 'application/json'
-      post :parse, { 'username' => 'sikachu', 'title' => 'Developer' }
+      post :parse, params: { 'username' => 'sikachu', 'title' => 'Developer' }
       assert_parameters({ 'username' => 'sikachu', 'title' => 'Developer', 'user' => { 'username' => 'sikachu' }})
     end
   end

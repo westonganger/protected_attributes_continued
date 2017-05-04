@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'active_model/mass_assignment_security'
 
-class WhiteListTest < ActiveModel::TestCase
+class WhiteListTest < ActiveSupport::TestCase
 
   def setup
     @white_list   = ActiveModel::MassAssignmentSecurity::WhiteList.new

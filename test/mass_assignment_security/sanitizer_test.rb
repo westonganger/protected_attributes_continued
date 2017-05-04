@@ -2,7 +2,7 @@ require 'test_helper'
 require 'active_model/mass_assignment_security'
 require 'active_support/logger'
 
-class SanitizerTest < ActiveModel::TestCase
+class SanitizerTest < ActiveSupport::TestCase
   attr_accessor :logger
 
   class Authorizer < ActiveModel::MassAssignmentSecurity::PermissionSet

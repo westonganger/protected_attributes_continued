@@ -4,7 +4,9 @@ module ActiveRecord
       extend ActiveSupport::Concern
 
       module ClassMethods
-      private
+
+        private
+
         # Detect the subclass from the inheritance column of attrs. If the inheritance column value
         # is not self or a valid subclass, raises ActiveRecord::SubclassNotFound
         # If this is a StrongParameters hash, and access to inheritance_column is not permitted,

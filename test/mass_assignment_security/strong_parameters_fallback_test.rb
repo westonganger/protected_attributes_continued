@@ -8,7 +8,7 @@ require 'models/book'
 require 'models/person'
 
 
-class StrongParametersFallbackTest < ActiveModel::TestCase
+class StrongParametersFallbackTest < ActiveSupport::TestCase
   test "AR, use strong parameters when no protection macro (attr_accessible, attr_protected) was used." do
     untrusted_params = ActionController::Parameters.new(title: 'Agile Development with Ruby on Rails')
 
@@ -30,9 +30,16 @@ class StrongParametersFallbackTest < ActiveModel::TestCase
     assert_nothing_raised { TightPerson.where(first_name: "John").first_or_initialize(untrusted_params) }
     assert_nothing_raised { TightPerson.where(first_name: "John").first_or_create(untrusted_params) }
     assert_nothing_raised { TightPerson.where(first_name: "John").first_or_create!(untrusted_params) }
-    assert_nothing_raised { TightPerson.find_or_initialize_by(untrusted_params) }
-    assert_nothing_raised { TightPerson.find_or_create_by(untrusted_params) }
-    assert_nothing_raised { TightPerson.find_or_create_by!(untrusted_params) }
+
+    if untrusted_params.respond_to?(:to_unsafe_h)
+      assert_nothing_raised { TightPerson.find_or_initialize_by(untrusted_params.to_unsafe_h) }
+      assert_nothing_raised { TightPerson.find_or_create_by(untrusted_params.to_unsafe_h) }
+      assert_nothing_raised { TightPerson.find_or_create_by!(untrusted_params.to_unsafe_h) }
+    else
+      assert_nothing_raised { TightPerson.find_or_initialize_by(untrusted_params) }
+      assert_nothing_raised { TightPerson.find_or_create_by(untrusted_params) }
+      assert_nothing_raised { TightPerson.find_or_create_by!(untrusted_params) }
+    end
   end
 
   test "with PORO including MassAssignmentSecurity that uses a protection marco" do

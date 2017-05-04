@@ -1,7 +1,3 @@
-if defined?(ActiveRecord)
-  require 'active_record/core'
-end
-
 require "active_model/mass_assignment_security"
 require "protected_attributes/railtie" if defined? Rails::Railtie
 require "protected_attributes/version"
@@ -15,4 +11,8 @@ ActiveSupport.on_load :action_controller do
 end
 
 module ProtectedAttributes
+end
+
+if defined?(ActiveRecord)
+  require 'active_record/core_patch'
 end

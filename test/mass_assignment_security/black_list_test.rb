@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'active_model/mass_assignment_security'
 
-class BlackListTest < ActiveModel::TestCase
+class BlackListTest < ActiveSupport::TestCase
 
   def setup
     @black_list   = ActiveModel::MassAssignmentSecurity::BlackList.new

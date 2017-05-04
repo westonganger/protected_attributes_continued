@@ -42,15 +42,24 @@ SharedTestRoutes = ActionDispatch::Routing::RouteSet.new
 module ActiveSupport
   class TestCase
     include SetupOnce
-    # Hold off drawing routes until all the possible controller classes
-    # have been loaded.
+    # Hold off drawing routes until all the possible controller classes have been loaded.
     setup_once do
       SharedTestRoutes.draw do
-        get ':controller(/:action)'
+        ActionController::Base.descendants.each do |klass|
+          namespace = klass.to_s.underscore.sub('_controller','')
+          klass.action_methods.each do |action|
+            get "#{namespace}/#{action}", to: "#{namespace}##{action}"
+          end
+        end
       end
 
       ActionDispatch::IntegrationTest.app.routes.draw do
-        get ':controller(/:action)'
+        ActionController::Base.descendants.each do |klass|
+          namespace = klass.to_s.underscore.sub('_controller','')
+          klass.action_methods.each do |action|
+            get "#{namespace}/#{action}", to: "#{namespace}##{action}"
+          end
+        end
       end
     end
   end
@@ -69,27 +78,25 @@ class RoutedRackApp
   end
 end
 
-class ActionDispatch::IntegrationTest < ActiveSupport::TestCase
+class ActionDispatch::IntegrationTest < ::ActiveSupport::TestCase
   setup do
     @routes = SharedTestRoutes
   end
 
   def self.build_app(routes = nil)
     RoutedRackApp.new(routes || ActionDispatch::Routing::RouteSet.new) do |middleware|
-      middleware.use "ActionDispatch::DebugExceptions"
-      middleware.use "ActionDispatch::Callbacks"
-      middleware.use "ActionDispatch::ParamsParser"
-      middleware.use "ActionDispatch::Cookies"
-      middleware.use "ActionDispatch::Flash"
-      middleware.use "Rack::Head"
+      middleware.use ActionDispatch::DebugExceptions
+      middleware.use ActionDispatch::Callbacks
+      middleware.use ActionDispatch::Cookies
+      middleware.use ActionDispatch::Flash
+      middleware.use Rack::Head
       yield(middleware) if block_given?
     end
   end
 
   self.app = build_app
 
-  # Stub Rails dispatcher so it does not get controller references and
-  # simply return the controller#action as Rack::Body.
+  # Stub Rails dispatcher so it does not get controller references and simply return the controller#action as Rack::Body.
   class StubDispatcher < ::ActionDispatch::Routing::RouteSet::Dispatcher
     protected
     def controller_reference(controller_param)

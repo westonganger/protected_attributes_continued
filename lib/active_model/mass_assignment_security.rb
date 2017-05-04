@@ -323,11 +323,7 @@ module ActiveModel
       #   customer.assign_attributes(name: 'David')
       #   # => StandardError: StandardError
       def mass_assignment_sanitizer=(value)
-        self._mass_assignment_sanitizer = if value.is_a?(Symbol)
-          const_get(:"#{value.to_s.camelize}Sanitizer").new(self)
-        else
-          value
-        end
+        self._mass_assignment_sanitizer = value.is_a?(Symbol) ? const_get(:"#{value.to_s.camelize}Sanitizer").new(self) : value
       end
 
       private
