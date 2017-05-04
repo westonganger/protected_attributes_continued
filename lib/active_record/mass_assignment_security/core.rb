@@ -3,8 +3,8 @@ module ActiveRecord
     module Core
 
       def initialize(attributes = nil, options = {})
-        @attributes = self.class._default_attributes.dup
         self.class.define_attribute_methods
+        @attributes = self.class._default_attributes.deep_dup
 
         init_internals
         initialize_internals_callback
