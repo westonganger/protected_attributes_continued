@@ -50,15 +50,15 @@ module ActiveRecord
     end
 
     def find_or_initialize_by(attributes, options = {}, &block)
-      find_by(attributes) || new(attributes, options, &block)
+      find_by((attributes.to_unsafe_h if attributes.respond_to?(:to_unsafe_h))) || new(attributes, options, &block)
     end
 
     def find_or_create_by(attributes, options = {}, &block)
-      find_by(attributes) || create(attributes, options, &block)
+      find_by((attributes.to_unsafe_h if attributes.respond_to?(:to_unsafe_h))) || create(attributes, options, &block)
     end
 
     def find_or_create_by!(attributes, options = {}, &block)
-      find_by(attributes) || create!(attributes, options, &block)
+      find_by((attributes.to_unsafe_h if attributes.respond_to?(:to_unsafe_h))) || create!(attributes, options, &block)
     end
   end
 

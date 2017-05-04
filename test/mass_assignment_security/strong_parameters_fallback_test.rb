@@ -30,16 +30,9 @@ class StrongParametersFallbackTest < ActiveSupport::TestCase
     assert_nothing_raised { TightPerson.where(first_name: "John").first_or_initialize(untrusted_params) }
     assert_nothing_raised { TightPerson.where(first_name: "John").first_or_create(untrusted_params) }
     assert_nothing_raised { TightPerson.where(first_name: "John").first_or_create!(untrusted_params) }
-
-    if untrusted_params.respond_to?(:to_unsafe_h)
-      assert_nothing_raised { TightPerson.find_or_initialize_by(untrusted_params.to_unsafe_h) }
-      assert_nothing_raised { TightPerson.find_or_create_by(untrusted_params.to_unsafe_h) }
-      assert_nothing_raised { TightPerson.find_or_create_by!(untrusted_params.to_unsafe_h) }
-    else
-      assert_nothing_raised { TightPerson.find_or_initialize_by(untrusted_params) }
-      assert_nothing_raised { TightPerson.find_or_create_by(untrusted_params) }
-      assert_nothing_raised { TightPerson.find_or_create_by!(untrusted_params) }
-    end
+    assert_nothing_raised { TightPerson.find_or_initialize_by(untrusted_params) }
+    assert_nothing_raised { TightPerson.find_or_create_by(untrusted_params) }
+    assert_nothing_raised { TightPerson.find_or_create_by!(untrusted_params) }
   end
 
   test "with PORO including MassAssignmentSecurity that uses a protection marco" do
