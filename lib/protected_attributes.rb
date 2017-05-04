@@ -1,4 +1,7 @@
-require 'active_record/core'
+if defined?(ActiveRecord)
+  require 'active_record/core'
+end
+
 require "active_model/mass_assignment_security"
 require "protected_attributes/railtie" if defined? Rails::Railtie
 require "protected_attributes/version"
