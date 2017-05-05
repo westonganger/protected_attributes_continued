@@ -35,17 +35,20 @@ class StrongParametersFallbackTest < ActiveSupport::TestCase
     assert_nothing_raised { TightPerson.find_or_create_by!(untrusted_params) }
   end
 
-  test "with PORO including MassAssignmentSecurity that uses a protection marco" do
+  test "with PORO including MassAssignmentSecurity that uses a protection macro" do
     klass = Class.new do
       include ActiveModel::MassAssignmentSecurity
       attr_protected :admin
     end
 
     untrusted_params = ActionController::Parameters.new(admin: true)
+    if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR == 0
+      untrusted_params = untrusted_params.to_h
+    end
     assert_equal({}, klass.new.send(:sanitize_for_mass_assignment, untrusted_params))
   end
 
-  test "with PORO including MassAssignmentSecurity that does not use a protection marco" do
+  test "with PORO including MassAssignmentSecurity that does not use a protection macro" do
     klass = Class.new do
       include ActiveModel::MassAssignmentSecurity
     end

@@ -1,6 +1,8 @@
-## 1.2.5
+## 1.3.0
 
+* Add Rails 5.1 support
 * Dont require activerecord in non-activerecord environments
+* Drop support for Rails 4, it now only support Rails 5
 
 ## 1.2.4
 

@@ -12,7 +12,3 @@ end
 
 module ProtectedAttributes
 end
-
-if defined?(ActiveRecord)
-  require 'active_record/core_patch'
-end

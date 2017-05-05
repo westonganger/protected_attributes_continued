@@ -2,9 +2,7 @@
 
 [![Build Status](https://api.travis-ci.org/westonganger/protected_attributes_continued.svg?branch=master)](https://travis-ci.org/westonganger/protected_attributes_continued)
 
-This is the community continued version of `protected_attributes`. This library is maintained and supports Rails 5+
-
-I have created this gem and changed the name because the Rails team refuses to support the `protected_attributes` gem for Rails 5+. For people who would like to continue using this feature in their Rails 5+ apps lets continue here. This is in use successfully on number of my Rails 5 production apps. 
+This is the community continued version of `protected_attributes`. It works with Rails 5 only and I recommend you only use it to support legacy portions of your application that you do not want to upgrade. Note that this feature was dropped by the Rails team and switched to strong_parameters because of security issues, just so you understand your risks. This is in use successfully in some of my Rails 5 apps in which security like this is a non-issue. For people who would like to continue using this feature in their Rails 5 apps lets continue the work here. 
 
 Protect attributes from mass-assignment in Active Record models.
 

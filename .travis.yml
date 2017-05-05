@@ -2,53 +2,18 @@ language: ruby
 sudo: false
 cache: bundler
 rvm:
-  - 1.9.3
-  - 2.0
-  - 2.1
   - 2.2.6
   - 2.3.3
   - 2.4.0
   - ruby-head
 
 gemfile:
-  - gemfiles/Gemfile-rails-4.0-stable
-  - gemfiles/Gemfile-rails-4.1-stable
-  - gemfiles/Gemfile-rails-4.2-stable
   - gemfiles/Gemfile-rails-5.0-stable
   - gemfiles/Gemfile-rails-5.1-stable
-  - gemfiles/Gemfile-rails-4.0
-  - gemfiles/Gemfile-rails-4.1
-  - gemfiles/Gemfile-rails-4.2
   - gemfiles/Gemfile-rails-5.0
   - gemfiles/Gemfile-rails-5.1
 
 matrix:
-  exclude:
-    - rvm: 1.9.3
-      gemfile: gemfiles/Gemfile-rails-5.0
-    - rvm: 1.9.3
-      gemfile: gemfiles/Gemfile-rails-5.0-stable
-    - rvm: 1.9.3
-      gemfile: gemfiles/Gemfile-rails-5.1
-    - rvm: 1.9.3
-      gemfile: gemfiles/Gemfile-rails-5.1-stable
-    - rvm: 2.0
-      gemfile: gemfiles/Gemfile-rails-5.0
-    - rvm: 2.0
-      gemfile: gemfiles/Gemfile-rails-5.0-stable
-    - rvm: 2.0
-      gemfile: gemfiles/Gemfile-rails-5.1
-    - rvm: 2.0
-      gemfile: gemfiles/Gemfile-rails-5.1-stable
-    - rvm: 2.1
-      gemfile: gemfiles/Gemfile-rails-5.0
-    - rvm: 2.1
-      gemfile: gemfiles/Gemfile-rails-5.0-stable
-    - rvm: 2.1
-      gemfile: gemfiles/Gemfile-rails-5.1
-    - rvm: 2.1
-      gemfile: gemfiles/Gemfile-rails-5.1-stable
-
   allow_failures:
     - rvm: ruby-head
 

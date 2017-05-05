@@ -15,11 +15,7 @@ module ActiveRecord
 
           attr_names.each do |association_name|
             if reflection = reflect_on_association(association_name)
-              if active_record_40?
-                reflection.options[:autosave] = true
-              else
-                reflection.autosave = true
-              end
+              reflection.autosave = true
               add_autosave_association_callbacks(reflection)
 
               nested_attributes_options = self.nested_attributes_options.dup
@@ -28,7 +24,7 @@ module ActiveRecord
 
               type = (reflection.collection? ? :collection : :one_to_one)
 
-              generated_methods_module = active_record_40? ? generated_feature_methods : generated_association_methods
+              generated_methods_module = generated_association_methods
 
               # def pirate_attributes=(attributes)
               #   assign_nested_attributes_for_one_to_one_association(:pirate, attributes, mass_assignment_options)
