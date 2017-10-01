@@ -50,6 +50,12 @@ module ActiveRecord
 
       def assign_nested_attributes_for_one_to_one_association(association_name, attributes, assignment_opts = {})
         options = self.nested_attributes_options[association_name]
+        if attributes.class.name == 'ActionController::Parameters'
+          attributes = attributes.to_unsafe_h
+        elsif !attributes.is_a?(Hash) && !attributes.is_a?(Array)
+          raise ArgumentError, "ActionController::Parameters or Hash or Array expected, got #{attributes.class.name} (#{attributes.inspect})"
+        end
+
         attributes = attributes.with_indifferent_access
 
         if  (options[:update_only] || !attributes['id'].blank?) && (record = send(association_name)) &&
