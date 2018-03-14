@@ -257,9 +257,12 @@ class AttributeSanitizationTest < ActiveSupport::TestCase
      :connection_handler, :nested_attributes_options,
      :attribute_method_matchers, :time_zone_aware_attributes, :skip_time_zone_conversion_for_attributes]
 
+    attribute_writers.push(:_attr_readonly) if ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR == 0
+
     attribute_writers.each do |method|
       assert_respond_to Task, method
       assert_respond_to Task, "#{method}="
+      assert_respond_to Task.new, method unless method == :configurations && !(ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR == 0)
       assert !Task.new.respond_to?("#{method}=")
     end
   end
@@ -515,6 +518,73 @@ class MassAssignmentSecurityFindersTest < ActiveSupport::TestCase
     p = LoosePerson.find_or_create_by!(attributes_hash, as: :admin)
 
     assert_admin_attributes(p, true)
+  end
+end
+
+if ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR == 0
+  # This class should be deleted when we remove activerecord-deprecated_finders as a
+  # dependency.
+  class MassAssignmentSecurityDeprecatedFindersTest < ActiveSupport::TestCase
+    include MassAssignmentTestHelpers
+
+    def setup
+      super
+      @deprecation_behavior = ActiveSupport::Deprecation.behavior
+      ActiveSupport::Deprecation.behavior = :silence
+    end
+
+    def teardown
+      super
+      ActiveSupport::Deprecation.behavior = @deprecation_behavior
+    end
+
+    def test_find_or_initialize_by_with_attr_accessible_attributes
+      p = TightPerson.find_or_initialize_by_first_name('Josh', attributes_hash)
+
+      assert_default_attributes(p)
+    end
+
+    def test_find_or_initialize_by_with_admin_role_with_attr_accessible_attributes
+      p = TightPerson.find_or_initialize_by_first_name('Josh', attributes_hash, :as => :admin)
+
+      assert_admin_attributes(p)
+    end
+
+    def test_find_or_initialize_by_with_attr_protected_attributes
+      p = LoosePerson.find_or_initialize_by_first_name('Josh', attributes_hash)
+
+      assert_default_attributes(p)
+    end
+
+    def test_find_or_initialize_by_with_admin_role_with_attr_protected_attributes
+      p = LoosePerson.find_or_initialize_by_first_name('Josh', attributes_hash, :as => :admin)
+
+      assert_admin_attributes(p)
+    end
+
+    def test_find_or_create_by_with_attr_accessible_attributes
+      p = TightPerson.find_or_create_by_first_name('Josh', attributes_hash)
+
+      assert_default_attributes(p, true)
+    end
+
+    def test_find_or_create_by_with_admin_role_with_attr_accessible_attributes
+      p = TightPerson.find_or_create_by_first_name('Josh', attributes_hash, :as => :admin)
+
+      assert_admin_attributes(p, true)
+    end
+
+    def test_find_or_create_by_with_attr_protected_attributes
+      p = LoosePerson.find_or_create_by_first_name('Josh', attributes_hash)
+
+      assert_default_attributes(p, true)
+    end
+
+    def test_find_or_create_by_with_admin_role_with_attr_protected_attributes
+      p = LoosePerson.find_or_create_by_first_name('Josh', attributes_hash, :as => :admin)
+
+      assert_admin_attributes(p, true)
+    end
   end
 end
 

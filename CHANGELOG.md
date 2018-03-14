@@ -29,9 +29,12 @@
 * Added Rails 5 support, already works just needed the gemspec updated to allow it
 * New repo `protected_attributes_continued` because Rails refuses to support Rails 5
 
-## END OF protected_attributes_continued CHANGELOG
-
 ## OLD protected_attributes CHANGELOG
+## 1.1.4
+
+* Avoid double callbacks in Rails >= 4.1.
+
+* Fixes UnitializedConstant in TooManyRecords.
 
 ## 1.1.3
 

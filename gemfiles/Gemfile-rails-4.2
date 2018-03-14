@@ -1,0 +1,15 @@
+source 'https://rubygems.org'
+
+gem 'rails', '~> 4.2.0'
+
+if RUBY_VERSION > '1.9.3'
+  gem 'mime-types'
+else
+  gem 'mime-types', '2.99'
+end
+
+if RUBY_VERSION < '2.1.0'
+  gem 'nokogiri', '< 1.7'
+end
+
+gemspec path: '..'
