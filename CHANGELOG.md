@@ -1,3 +1,9 @@
+## 1.4.0 - UNRELEASED
+
+* Add Rails 5.2 support
+* Fix bug related to incorrect usage of options on the AR#new method
+* Use scope_for_create instead of create_scope in Rails 5.2+
+
 ## 1.3.0
 
 * Add Rails 5.1 support
