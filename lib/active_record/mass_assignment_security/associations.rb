@@ -5,7 +5,7 @@ module ActiveRecord
 
       def build_record(attributes, options)
         reflection.build_association(attributes, options) do |record|
-          the_scope = (ActiveRecord::VERSION.to_f >= 5.2 ? scope_for_create : create_scope)
+          the_scope = (ActiveRecord::VERSION::STRING.to_f >= 5.2 ? scope_for_create : create_scope)
           attributes = the_scope.except(*(record.changed - [reflection.foreign_key]))
           record.assign_attributes(attributes, without_protection: true)
         end
