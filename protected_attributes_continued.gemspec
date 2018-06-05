@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
   gem.name          = "protected_attributes_continued"
   gem.version       = ProtectedAttributes::VERSION
   gem.authors       = ["Weston Ganger"]
-  gem.email         = ['westonganger@gmail.com']
+  gem.email         = ['weston@westonganger.com']
   gem.description   = %q{Protect attributes from mass assignment}
   gem.summary       = %q{Protect attributes from mass assignment in Active Record models}
   gem.homepage      = "https://github.com/westonganger/protected_attributes_continued"
