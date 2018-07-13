@@ -1,6 +1,6 @@
 # Protected Attributes Continued
-
-[![Build Status](https://api.travis-ci.org/westonganger/protected_attributes_continued.svg?branch=master)](https://travis-ci.org/westonganger/protected_attributes_continued)
+<a href="https://badge.fury.io/rb/protected_attributes_continued" target="_blank"><img height="21" style='border:0px;height:21px;' border='0' src="https://badge.fury.io/rb/protected_attributes_continued.svg" alt="Gem Version"></a>
+<a href='https://rubygems.org/gems/protected_attributes_continued' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://ruby-gem-downloads-badge.herokuapp.com/protected_attributes_continued?label=rubygems&type=total&total_label=downloads&color=brightgreen' border='0' alt='RubyGems Downloads' /></a>
 
 This is the community continued version of `protected_attributes`. It works with Rails 5 only and I recommend you only use it to support legacy portions of your application that you do not want to upgrade. Note that this feature was dropped by the Rails team and switched to strong_parameters because of security issues, just so you understand your risks. This is in use successfully in some of my Rails 5 apps in which security like this is a non-issue. For people who would like to continue using this feature in their Rails 5 apps lets continue the work here. 
 
