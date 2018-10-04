@@ -270,9 +270,7 @@ class AttributeSanitizationTest < ActiveSupport::TestCase
   def test_new_with_protected_inheritance_column
     firm = Company.new(type: "Firm")
 
-    ### TEST IS FAILING, SO I MADE IT PASS
-    #assert_equal Company, firm.class #original line
-    assert_equal Firm, firm.class
+    assert_equal Company, firm.class
   end
 
   def test_new_with_accessible_inheritance_column
