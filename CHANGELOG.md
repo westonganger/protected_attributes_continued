@@ -3,6 +3,7 @@
 * Add Rails 5.2 support
 * Fix bug related to incorrect usage of options on the AR#new method
 * Use scope_for_create instead of create_scope in Rails 5.2+
+* Fix bug related to protection of `inheritance_column` attribute
 
 ## 1.3.0
 
