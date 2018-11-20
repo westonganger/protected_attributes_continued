@@ -32,33 +32,33 @@ module ActiveRecord
     #   end
     #   # => <User id: 2, first_name: 'Scarlett', last_name: 'Johansson'>
     def first_or_create(attributes = nil, options = {}, &block)
-      first || create(attributes, options, &block)
+      first || create(attributes,&block)
     end
 
     # Like <tt>first_or_create</tt> but calls <tt>create!</tt> so an exception is raised if the created record is invalid.
     #
     # Expects arguments in the same format as <tt>Base.create!</tt>.
     def first_or_create!(attributes = nil, options = {}, &block)
-      first || create!(attributes, options, &block)
+      first || create!(attributes,&block)
     end
 
     # Like <tt>first_or_create</tt> but calls <tt>new</tt> instead of <tt>create</tt>.
     #
     # Expects arguments in the same format as <tt>Base.new</tt>.
     def first_or_initialize(attributes = nil, options = {}, &block)
-      first || new(attributes, options, &block)
+      first || new(attributes,&block)
     end
 
     def find_or_initialize_by(attributes, options = {}, &block)
-      find_by(attributes.respond_to?(:to_unsafe_h) ? attributes.to_unsafe_h : attributes) || new(attributes, options, &block)
+      find_by(attributes.respond_to?(:to_unsafe_h) ? attributes.to_unsafe_h : attributes) || new(attributes,&block)
     end
 
     def find_or_create_by(attributes, options = {}, &block)
-      find_by(attributes.respond_to?(:to_unsafe_h) ? attributes.to_unsafe_h : attributes) || create(attributes, options, &block)
+      find_by(attributes.respond_to?(:to_unsafe_h) ? attributes.to_unsafe_h : attributes) || create(attributes,&block)
     end
 
     def find_or_create_by!(attributes, options = {}, &block)
-      find_by(attributes.respond_to?(:to_unsafe_h) ? attributes.to_unsafe_h : attributes) || create!(attributes, options, &block)
+      find_by(attributes.respond_to?(:to_unsafe_h) ? attributes.to_unsafe_h : attributes) || create!(attributes,&block)
     end
   end
 

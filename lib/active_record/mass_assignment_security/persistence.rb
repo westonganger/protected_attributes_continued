@@ -40,9 +40,9 @@ module ActiveRecord
         #   end
         def create(attributes = nil, options = {}, &block)
           if attributes.is_a?(Array)
-            attributes.collect { |attr| create(attr, options, &block) }
+            attributes.collect { |attr| create(attr,&block) }
           else
-            object = new(attributes, options, &block)
+            object = new(attributes,&block)
             object.save
             object
           end

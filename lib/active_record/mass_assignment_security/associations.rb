@@ -5,8 +5,7 @@ module ActiveRecord
 
       def build_record(attributes, options)
         reflection.build_association(attributes, options) do |record|
-          the_scope = (ActiveRecord::VERSION::STRING.to_f >= 5.2 ? scope_for_create : create_scope)
-          attributes = the_scope.except(*(record.changed - [reflection.foreign_key]))
+          attributes = create_scope.except(*(record.changed - [reflection.foreign_key]))
           record.assign_attributes(attributes, without_protection: true)
         end
       end
@@ -21,7 +20,7 @@ module ActiveRecord
 
       def build(attributes = {}, options = {}, &block)
         if attributes.is_a?(Array)
-          attributes.collect { |attr| build(attr, options, &block) }
+          attributes.collect { |attr| build(attr,&block) }
         else
           add_to_target(build_record(attributes, options)) do |record|
             yield(record) if block_given?
@@ -30,20 +29,20 @@ module ActiveRecord
       end
 
       def create(attributes = {}, options = {}, &block)
-        create_record(attributes, options, &block)
+        create_record(attributes,&block)
       end
 
       def create!(attributes = {}, options = {}, &block)
-        create_record(attributes, options, true, &block)
+        create_record(attributes,true, &block)
       end
 
-      def create_record(attributes, options, raise = false, &block)
+      def create_record(attributes,raise = false, &block)
         unless owner.persisted?
           raise ActiveRecord::RecordNotSaved, "You cannot call create unless the parent is saved"
         end
 
         if attributes.is_a?(Array)
-          attributes.collect { |attr| create_record(attr, options, raise, &block) }
+          attributes.collect { |attr| create_record(attr,raise, &block) }
         else
           transaction do
             add_to_target(build_record(attributes, options)) do |record|
@@ -62,16 +61,16 @@ module ActiveRecord
       undef :create!
 
       def build(attributes = {}, options = {}, &block)
-        @association.build(attributes, options, &block)
+        @association.build(attributes,&block)
       end
       alias_method :new, :build
 
       def create(attributes = {}, options = {}, &block)
-        @association.create(attributes, options, &block)
+        @association.create(attributes,&block)
       end
 
       def create!(attributes = {}, options = {}, &block)
-        @association.create!(attributes, options, &block)
+        @association.create!(attributes,&block)
       end
     end
 
@@ -126,11 +125,11 @@ module ActiveRecord
       undef :build
 
       def create(attributes = {}, options = {}, &block)
-        create_record(attributes, options, &block)
+        create_record(attributes,&block)
       end
 
       def create!(attributes = {}, options = {}, &block)
-        create_record(attributes, options, true, &block)
+        create_record(attributes,true, &block)
       end
 
       def build(attributes = {}, options = {})

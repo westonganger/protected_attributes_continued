@@ -10,9 +10,9 @@ module ActiveRecord
         # so an exception is raised if the record is invalid.
         def create!(attributes = nil, options = {}, &block)
           if attributes.is_a?(Array)
-            attributes.collect { |attr| create!(attr, options, &block) }
+            attributes.collect { |attr| create!(attr,&block) }
           else
-            object = new(attributes, options)
+            object = new(attributes)
             yield(object) if block_given?
             object.save!
             object
