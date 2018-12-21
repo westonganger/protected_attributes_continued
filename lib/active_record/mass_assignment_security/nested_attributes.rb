@@ -60,7 +60,13 @@ module ActiveRecord
           raise ArgumentError, "ActionController::Parameters or Hash or Array expected, got #{attributes.class.name} (#{attributes.inspect})"
         end
 
-        attributes = attributes.with_indifferent_access
+        if attributes.class.name == 'ActionController::Parameters'
+            attributes = attributes.to_unsafe_h
+        elsif !attributes.is_a?(Hash) && !attributes.is_a?(Array)
+            raise ArgumentError, "ActionController::Parameters or Hash or Array expected, got #{attributes.class.name} (#{attributes.inspect})"
+        end
+
+        attributes = attributes.to_h.with_indifferent_access
 
         if  (options[:update_only] || !attributes['id'].blank?) && (record = send(association_name)) &&
             (options[:update_only] || record.id.to_s == attributes['id'].to_s)
@@ -122,7 +128,12 @@ module ActiveRecord
         end
 
         attributes_collection.each do |attributes|
-          attributes = attributes.with_indifferent_access
+            if attributes.class.name == 'ActionController::Parameters'
+                attributes = attributes.to_unsafe_h
+            elsif !attributes.is_a?(Hash) && !attributes.is_a?(Array)
+                raise ArgumentError, "ActionController::Parameters or Hash or Array expected, got #{attributes.class.name} (#{attributes.inspect})"
+            end
+            attributes = attributes.to_h.with_indifferent_access
 
           if attributes['id'].blank?
             unless reject_new_record?(association_name, attributes)
