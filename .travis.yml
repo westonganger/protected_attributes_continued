@@ -2,20 +2,20 @@ language: ruby
 sudo: false
 cache: bundler
 rvm:
-  - 2.2.6
-  - 2.3.3
-  - 2.4.0
+  - 2.3
+  - 2.4
+  - 2.5
   - ruby-head
 
 gemfile:
-  - gemfiles/Gemfile-rails-5.0-stable
-  - gemfiles/Gemfile-rails-5.1-stable
-  - gemfiles/Gemfile-rails-5.0
-  - gemfiles/Gemfile-rails-5.1
+  - gemfiles/Rails_5.0.x
+  - gemfiles/Rails_5.1.x
+  - gemfiles/Rails_5.2.x
 
 matrix:
   allow_failures:
     - rvm: ruby-head
+    - gemfile: gemfiles/Rails_master
 
 notifications:
   email: false
