@@ -1,11 +1,40 @@
 module ActiveRecord
   class Relation
+    undef :new
+    undef :create
+    undef :create!
     undef :first_or_create
     undef :first_or_create!
     undef :first_or_initialize
     undef :find_or_initialize_by
     undef :find_or_create_by
     undef :find_or_create_by!
+
+    def new(attributes = nil, options = {}, &block)
+      attrs = respond_to?(:values_for_create) ? values_for_create(attributes) : attributes
+
+      scoping { klass.new(attrs, options, &block) }
+    end
+
+    def create(attributes = nil, options = {}, &block)
+      if attributes.is_a?(Array)
+        attributes.collect { |attr| create(attr, options, &block) }
+      else
+        attrs = respond_to?(:values_for_create) ? values_for_create(attributes) : attributes
+
+        scoping { klass.create(attrs, options, &block) }
+      end
+    end
+
+    def create!(attributes = nil, options = {}, &block)
+      if attributes.is_a?(Array)
+        attributes.collect { |attr| create!(attr, options, &block) }
+      else
+        attrs = respond_to?(:values_for_create) ? values_for_create(attributes) : attributes
+
+        scoping { klass.create!(attrs, options, &block) }
+      end
+    end
 
     # Tries to load the first record; if it fails, then <tt>create</tt> is called with the same arguments as this method.
     #

@@ -1,8 +1,9 @@
 # Protected Attributes Continued
 <a href="https://badge.fury.io/rb/protected_attributes_continued" target="_blank"><img height="21" style='border:0px;height:21px;' border='0' src="https://badge.fury.io/rb/protected_attributes_continued.svg" alt="Gem Version"></a>
+<a href='https://travis-ci.org/westonganger/protected_attributes_continued' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://api.travis-ci.org/westonganger/protected_attributes_continued.svg?branch=master' border='0' alt='Build Status' /></a>
 <a href='https://rubygems.org/gems/protected_attributes_continued' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://ruby-gem-downloads-badge.herokuapp.com/protected_attributes_continued?label=rubygems&type=total&total_label=downloads&color=brightgreen' border='0' alt='RubyGems Downloads' /></a>
 
-This is the community continued version of `protected_attributes`. It works with Rails 5 only and I recommend you only use it to support legacy portions of your application that you do not want to upgrade. Note that this feature was dropped by the Rails team and switched to strong_parameters because of security issues, just so you understand your risks. This is in use successfully in some of my Rails 5 apps in which security like this is a non-issue. For people who would like to continue using this feature in their Rails 5 apps lets continue the work here. 
+This is the community continued version of `protected_attributes`. It works with Rails 5+ only and I recommend you only use it to support legacy portions of your application that you do not want to upgrade. Note that this feature was dropped by the Rails team and switched to strong_parameters because of security issues, just so you understand your risks. This is in use successfully in some of my Rails 5 apps in which security like this is a non-issue. For people who would like to continue using this feature in their Rails 5 apps lets continue the work here. If you are looking for a similar approach see my [recommended alternative](https://github.com/westonganger/protected_attributes_continued#a-better-alternative)
 
 Protect attributes from mass-assignment in Active Record models.
 
@@ -98,10 +99,49 @@ config.active_record.mass_assignment_sanitizer = :strict
 Any protected attributes violation raises `ActiveModel::MassAssignmentSecurity::Error` then.
 
 
-# Credits
+## Contributing
 
-Created and Maintained by [Weston Ganger - @westonganger](https://github.com/westonganger)
+We use the `appraisal` gem for testing multiple versions of `Rails`. Please use the following steps to test using `appraisal`.
+
+1. `bundle exec appraisal install`
+2. `bundle exec appraisal rake test`
+
+## Credits
+
+Created & Maintained by [Weston Ganger](https://westonganger.com) - [@westonganger](https://github.com/westonganger)
 
 Originally forked from the dead/unmaintained `protected_attributes` gem by the Rails team.
 
-<a href='https://ko-fi.com/A5071NK' target='_blank'><img height='32' style='border:0px;height:32px;' src='https://az743702.vo.msecnd.net/cdn/kofi1.png?v=a' border='0' alt='Buy Me a Coffee' /></a> 
+## A Better Alternative
+
+While I do utilize this gem in some legacy projects I have adopted an alternative approach that is similar to this gem but only utilizes Rails built-in `strong_params` which is a much more future proof way of doing things. See the following example for how to implement.
+
+```ruby
+class Post < ActiveRecord::Base
+
+  def self.strong_params(params)
+    params.permit(:post).permit(:name, :content, :published_at)
+  end
+
+end
+
+class PostsController < ApplicationController
+
+  def create
+    @post = Post.new
+
+    @post.assign_attributes(Post.strong_params(params))
+
+    respond_with @post
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    @post.update(Post.strong_params(params))
+
+    respond_with @post
+  end
+
+end
+```
