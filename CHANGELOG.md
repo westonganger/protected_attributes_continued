@@ -1,38 +1,36 @@
-## 1.4.0 - UNRELEASED
+# Change Log
+
+## 1.4.0 - 2018-12-28
 
 * Add Rails 5.2 support
-* Fix bug related to incorrect usage of options on the AR#new method
-* Use scope_for_create instead of create_scope in Rails 5.2+
+* Fix bug related to incorrect usage of options on the `AR#new` method
+* Use `scope_for_create` instead of `create_scope` in Rails 5.2+
 * Fix bug related to protection of `inheritance_column` attribute
 * Use Appraisal for testing against multple Rails versions
 
-## 1.3.0
+## 1.3.0 - 2017-05-05
 
 * Add Rails 5.1 support
 * Dont require activerecord in non-activerecord environments
 * Drop support for Rails 4, it now only support Rails 5
 
-## 1.2.4
+## 1.2.4 - 2017-05-05
 
 * Fixed params type checking with nested attributes
 
-## 1.2.4
-
-* Fixed params type checking with nested attributes
-
-## 1.2.3
+## 1.2.3 - 2016-09-20
 
 * Fixed ArgumentError with nested attributes
 
-## 1.2.2
+## 1.2.2 - 2016-09-20
 
 * Fix for Rails 5
 
-## 1.2.1
+## 1.2.1 - 2016-09-20
 
 * Fix for Rails 5
 
-## 1.2.0
+## 1.2.0 - 2016-09-20
 
 * Added Rails 5 support, already works just needed the gemspec updated to allow it
 * New repo `protected_attributes_continued` because Rails refuses to support Rails 5
