@@ -3,11 +3,9 @@
 <a href='https://travis-ci.org/westonganger/protected_attributes_continued' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://api.travis-ci.org/westonganger/protected_attributes_continued.svg?branch=master' border='0' alt='Build Status' /></a>
 <a href='https://rubygems.org/gems/protected_attributes_continued' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://ruby-gem-downloads-badge.herokuapp.com/protected_attributes_continued?label=rubygems&type=total&total_label=downloads&color=brightgreen' border='0' alt='RubyGems Downloads' /></a>
 
-This is the community continued version of `protected_attributes`. It works with Rails 5+ only and I recommend you only use it to support legacy portions of your application that you do not want to upgrade. Note that this feature was dropped by the Rails team and switched to strong_parameters because of security issues, just so you understand your risks. This is in use successfully in some of my Rails 5 apps in which security like this is a non-issue. For people who would like to continue using this feature in their Rails 5 apps lets continue the work here. If you are looking for a similar approach see my [recommended alternative](https://github.com/westonganger/protected_attributes_continued#a-better-alternative)
+> This is the community continued version of `protected_attributes` for Rails 5+. I recommend you only use it to support legacy portions of your application that you do not want to upgrade. The Rails team dropped this feature and switched to `strong_parameters` because of security issues. However some applications simply cannot be upgraded or security like this is a non-issue. To continue supporting this feature going forward lets continue the work here.
 
-Protect attributes from mass-assignment in Active Record models.
-
-This plugin adds the class methods `attr_accessible` and `attr_protected` to your models to be able to declare white or black lists of attributes.
+Protect attributes from mass-assignment in Active Record models. This gem adds the class methods `attr_accessible` and `attr_protected` to declare white or black lists of attributes.
 
 
 ## Installation
@@ -98,7 +96,6 @@ config.active_record.mass_assignment_sanitizer = :strict
 
 Any protected attributes violation raises `ActiveModel::MassAssignmentSecurity::Error` then.
 
-
 ## Contributing
 
 We use the `appraisal` gem for testing multiple versions of `Rails`. Please use the following steps to test using `appraisal`.
@@ -112,21 +109,20 @@ Created & Maintained by [Weston Ganger](https://westonganger.com) - [@westongang
 
 Originally forked from the dead/unmaintained `protected_attributes` gem by the Rails team.
 
-## A Better Alternative
+## A Simple and Similar strong_params Alternative
 
-While I do utilize this gem in some legacy projects I have adopted an alternative approach that is similar to this gem but only utilizes Rails built-in `strong_params` which is a much more future proof way of doing things. See the following example for how to implement.
+While I do utilize this gem in some legacy projects. The latest approach I have adopted is similar to this gem but only utilizes Rails built-in `strong_params` which is a much more future proof way of doing things. The following is an example implementation.
 
 ```ruby
+### Model
 class Post < ActiveRecord::Base
-
   def self.strong_params(params)
     params.permit(:post).permit(:name, :content, :published_at)
   end
-
 end
 
+### Controller
 class PostsController < ApplicationController
-
   def create
     @post = Post.new
 
@@ -142,6 +138,5 @@ class PostsController < ApplicationController
 
     respond_with @post
   end
-
 end
 ```
