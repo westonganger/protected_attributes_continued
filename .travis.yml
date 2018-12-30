@@ -8,14 +8,13 @@ rvm:
   - ruby-head
 
 gemfile:
-  - gemfiles/Rails_5.0.x
-  - gemfiles/Rails_5.1.x
-  - gemfiles/Rails_5.2.x
+  - gemfiles/Rails_5.0.x.gemfile
+  - gemfiles/Rails_5.1.x.gemfile
+  - gemfiles/Rails_5.2.x.gemfile
 
 matrix:
   allow_failures:
     - rvm: ruby-head
-    - gemfile: gemfiles/Rails_master
 
 notifications:
   email: false
