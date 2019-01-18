@@ -1,5 +1,9 @@
 # Change Log
 
+## Unreleased
+
+* [#13](https://github.com/westonganger/protected_attributes_continued/pull/13) - Fixed with_indifferent_access call in nested attributes
+
 ## 1.4.0 - 2018-12-28
 
 * Add Rails 5.2 support
