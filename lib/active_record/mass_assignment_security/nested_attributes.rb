@@ -56,15 +56,14 @@ module ActiveRecord
         options = self.nested_attributes_options[association_name]
 
         if attributes.class.name == 'ActionController::Parameters'
-            attributes = attributes.to_unsafe_h
+          attributes = attributes.to_unsafe_h
         elsif !attributes.is_a?(Hash) && !attributes.is_a?(Array)
-            raise ArgumentError, "ActionController::Parameters or Hash or Array expected, got #{attributes.class.name} (#{attributes.inspect})"
+          raise ArgumentError, "ActionController::Parameters or Hash or Array expected, got #{attributes.class.name} (#{attributes.inspect})"
         end
 
-        attributes = attributes.to_h.with_indifferent_access
+        attributes = attributes.with_indifferent_access
 
-        if  (options[:update_only] || !attributes['id'].blank?) && (record = send(association_name)) &&
-            (options[:update_only] || record.id.to_s == attributes['id'].to_s)
+        if (options[:update_only] || !attributes['id'].blank?) && (record = send(association_name)) && (options[:update_only] || record.id.to_s == attributes['id'].to_s)
           assign_to_or_mark_for_destruction(record, attributes, options[:allow_destroy], assignment_opts) unless call_reject_if(association_name, attributes)
 
         elsif attributes['id'].present? && !assignment_opts[:without_protection]
@@ -123,12 +122,13 @@ module ActiveRecord
         end
 
         attributes_collection.each do |attributes|
-            if attributes.class.name == 'ActionController::Parameters'
-                attributes = attributes.to_unsafe_h
-            elsif !attributes.is_a?(Hash) && !attributes.is_a?(Array)
-                raise ArgumentError, "ActionController::Parameters or Hash or Array expected, got #{attributes.class.name} (#{attributes.inspect})"
-            end
-            attributes = attributes.to_h.with_indifferent_access
+          if attributes.class.name == 'ActionController::Parameters'
+            attributes = attributes.to_unsafe_h
+          elsif !attributes.is_a?(Hash) && !attributes.is_a?(Array)
+            raise ArgumentError, "ActionController::Parameters or Hash or Array expected, got #{attributes.class.name} (#{attributes.inspect})"
+          end
+          
+          attributes = attributes.with_indifferent_access
 
           if attributes['id'].blank?
             unless reject_new_record?(association_name, attributes)
