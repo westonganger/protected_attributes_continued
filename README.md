@@ -124,9 +124,9 @@ end
 ### Controller
 class PostsController < ApplicationController
   def create
-    @post = Post.new
-
-    @post.assign_attributes(Post.strong_params(params))
+    @post = Post.new(Post.strong_params(params))
+    
+    @post.save
 
     respond_with @post
   end
