@@ -3,6 +3,7 @@
 ## Unreleased
 
 * [#13](https://github.com/westonganger/protected_attributes_continued/pull/13) - Fixed with_indifferent_access call in nested attributes
+* [#14](https://github.com/westonganger/protected_attributes_continued/pull/14) - For ActiveRecord versions >= 5.2.3 Rails does not call `options_for_through_record` anymore. This method was previously used by `protected_attributes` to pass in the `without_protection: true` option. We now override the `build_through_record` method instead and pass the option in there.
 
 ## 1.4.0 - 2018-12-28
 
