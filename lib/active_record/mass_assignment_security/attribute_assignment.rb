@@ -61,7 +61,7 @@ module ActiveRecord
         attributes.each do |k, v|
           if k.include?("(")
             multi_parameter_attributes << [ k, v ]
-          elsif v.is_a?(Hash)
+          elsif v.is_a?(Hash) || v.is_a?(ActionController::Parameters)
             nested_parameter_attributes << [ k, v ]
           else
             _assign_attribute(k, v)
