@@ -22,10 +22,12 @@ module ActiveRecord
     module ClassMethods
       undef :new
 
-      def new(attributes = nil, options = {}, &block)
+      def new(*args, &block)
         if abstract_class? || self == Base
           raise NotImplementedError, "#{self} is an abstract class and cannot be instantiated."
         end
+
+        attributes = args.first
 
         if has_attribute?(inheritance_column)
           subclass = subclass_from_attributes(attributes)
@@ -36,7 +38,7 @@ module ActiveRecord
         end
 
         if subclass && subclass != self
-          subclass.new(attributes, options, &block)
+          subclass.new(*args, &block)
         else
           super
         end
