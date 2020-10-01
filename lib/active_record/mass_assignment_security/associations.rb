@@ -1,3 +1,5 @@
+### Original Rails Code - https://github.com/rails/rails/tree/master/activerecord/lib/active_record/associations
+
 module ActiveRecord
   module Associations
     class Association
@@ -10,7 +12,6 @@ module ActiveRecord
           record.assign_attributes(attributes, without_protection: true)
         end
       end
-
       private :build_record
     end
 
@@ -53,7 +54,6 @@ module ActiveRecord
           end
         end
       end
-
       private :create_record
     end
 
@@ -76,29 +76,24 @@ module ActiveRecord
     end
 
     module ThroughAssociation
-      undef :build_record if respond_to?(:build_record, false)
+      ### Cant use respond_to?(method, true) because its a module instead of a class
+      undef :build_record if self.private_instance_methods.include?(:build_record)
+      def build_record(attributes, options={})
+        inverse = source_reflection.inverse_of
+        target = through_association.target
 
-      private
-
-        def build_record(attributes, options={})
-          inverse = source_reflection.inverse_of
-          target = through_association.target
-
-          if inverse && target && !target.is_a?(Array)
-            attributes[inverse.foreign_key] = target.id
-          end
-
-          super(attributes, options)
+        if inverse && target && !target.is_a?(Array)
+          attributes[inverse.foreign_key] = target.id
         end
+
+        super(attributes, options)
+      end
+      private :build_record
     end
 
     class HasManyThroughAssociation
-      undef :build_record
-      undef :options_for_through_record if respond_to?(:options_for_through_record, false)
-
       if ActiveRecord.version >= Gem::Version.new('5.2.3')
         undef :build_through_record
-
         def build_through_record(record)
           @through_records[record.object_id] ||= begin
             ensure_mutable
@@ -115,6 +110,7 @@ module ActiveRecord
         private :build_through_record
       end
 
+      undef :build_record
       def build_record(attributes, options = {})
         ensure_not_nested
 
@@ -133,6 +129,7 @@ module ActiveRecord
       end
       private :build_record
 
+      undef :options_for_through_record if respond_to?(:options_for_through_record, true)
       def options_for_through_record
         [through_scope_attributes, without_protection: true]
       end

@@ -3,6 +3,9 @@
 ## Unreleased
 
 * [#18](https://github.com/westonganger/protected_attributes_continued/pull/18) - Fix for Rails 6+ for new records that were supposed to be created issuing UPDATE sql calls instead of INSERT. They would come back thinking they were persisted, but they didn't have an id attribute because of the invalid sql call made.
+* Fix method redefined warning for ThroughAssociation#build_record
+* Fix method redefined warning for HasManyThroughAssociation#options_for_through_association for Rails <= 5.2
+* Add Rails 6 to test matrix
 
 ## 1.5.0 - 2019-08-16
 

@@ -9,3 +9,11 @@ Rake::TestTask.new do |t|
 end
 
 task :default => :test
+
+task :console do
+  require 'active_record'
+  require 'protected_attributes_continued'
+
+  require 'irb'
+  binding.irb
+end
