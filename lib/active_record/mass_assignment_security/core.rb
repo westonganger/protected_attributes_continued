@@ -3,6 +3,7 @@ module ActiveRecord
     module Core
 
       def initialize(attributes = nil, options = {})
+        @new_record = true
         self.class.define_attribute_methods
         @attributes = self.class._default_attributes.deep_dup
 
