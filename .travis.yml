@@ -18,6 +18,11 @@ gemfile:
 matrix:
   allow_failures:
     - rvm: ruby-head
+  exclude:
+    - rvm: 2.3
+      gemfile: gemfiles/Rails_6.0.x.gemfile
+    - rvm: 2.4
+      gemfile: gemfiles/Rails_6.0.x.gemfile
 
 notifications:
   email:
