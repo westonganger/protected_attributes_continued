@@ -42,7 +42,7 @@ class StrongParametersFallbackTest < ActiveSupport::TestCase
     end
 
     untrusted_params = ActionController::Parameters.new(admin: true)
-    if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR == 0
+    if ActiveRecord::VERSION::MAJOR == 5 && ActiveRecord::VERSION::MINOR == 0
       untrusted_params = untrusted_params.to_h
     end
     assert_equal({}, klass.new.send(:sanitize_for_mass_assignment, untrusted_params))
