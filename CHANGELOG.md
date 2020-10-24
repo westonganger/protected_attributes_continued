@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* Nothing yet
+* [#20](https://github.com/westonganger/protected_attributes_continued/pull/20) - Fix bug when calling `first_or_initialize` on an association relation
 
 ## 1.6.0 - 2020-10-01
 
