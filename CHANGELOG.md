@@ -1,8 +1,11 @@
-# Change Log
+# CHANGELOG
 
 ## Unreleased
 
 * [#20](https://github.com/westonganger/protected_attributes_continued/pull/20) - Fix bug when calling `first_or_initialize` on an association relation
+* [60da8e1](https://github.com/westonganger/protected_attributes_continued/commit/60da8e1deee54da97546c5ad3fe38c3385a8e5e8) - Add warning at end of default rake task to highlight the requirement to run the tests with `appraisal`
+* [c38a230](https://github.com/westonganger/protected_attributes_continued/commit/c38a230b310fdb42662dad6bdd46e15ab3d3489d) - Added db setup and reloading to `rake console` task for easier debugging
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.6.0...master)
 
 ## 1.6.0 - 2020-10-01
 
@@ -10,11 +13,13 @@
 * Fix method redefined warning for ThroughAssociation#build_record
 * Fix method redefined warning for HasManyThroughAssociation#options_for_through_association for Rails <= 5.2
 * Add Rails 6.0 to test matrix
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.5.0...v1.6.0)
 
 ## 1.5.0 - 2019-08-16
 
 * [#13](https://github.com/westonganger/protected_attributes_continued/pull/13) - Fixed with_indifferent_access call in nested attributes
 * [#14](https://github.com/westonganger/protected_attributes_continued/pull/14) - For ActiveRecord versions >= 5.2.3 Rails does not call `options_for_through_record` anymore. This method was previously used by `protected_attributes` to pass in the `without_protection: true` option. We now override the `build_through_record` method instead and pass the option in there.
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.4.0...v1.5.0)
 
 ## 1.4.0 - 2018-12-28
 
@@ -23,33 +28,40 @@
 * Use `scope_for_create` instead of `create_scope` in Rails 5.2+
 * Fix bug related to protection of `inheritance_column` attribute
 * Use Appraisal for testing against multple Rails versions
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.3.0...v1.4.0)
 
 ## 1.3.0 - 2017-05-05
 
 * Add Rails 5.1 support
 * Dont require activerecord in non-activerecord environments
 * Drop support for Rails 4, it now only support Rails 5
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.2.4...v1.3.0)
 
 ## 1.2.4 - 2017-05-05
 
 * Fixed params type checking with nested attributes
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.2.3...v1.2.4)
 
 ## 1.2.3 - 2016-09-20
 
 * Fixed ArgumentError with nested attributes
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.2.2...v1.2.3)
 
 ## 1.2.2 - 2016-09-20
 
 * Fix for Rails 5
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.2.1...v1.2.2)
 
 ## 1.2.1 - 2016-09-20
 
 * Fix for Rails 5
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.2.0...v1.2.1)
 
 ## 1.2.0 - 2016-09-20
 
 * Added Rails 5 support, already works just needed the gemspec updated to allow it
 * New repo `protected_attributes_continued` because Rails refuses to support Rails 5
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.1.4...v1.2.0)
 
 ## OLD protected_attributes CHANGELOG
 ## 1.1.4
