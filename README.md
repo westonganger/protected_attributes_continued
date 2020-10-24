@@ -98,7 +98,9 @@ Any protected attributes violation raises `ActiveModel::MassAssignmentSecurity::
 
 ## Contributing
 
-We use the `appraisal` gem for testing multiple versions of `Rails`. Please use the following steps to test using `appraisal`.
+For quicker feedback during gem development or debugging feel free to use the provided `rake console` task. It is defined within the `Rakefile`.
+
+We test multiple versions of `Rails` using the `appraisal` gem. Please use the following steps to test using `appraisal`.
 
 1. `bundle exec appraisal install`
 2. `bundle exec appraisal rake test`
