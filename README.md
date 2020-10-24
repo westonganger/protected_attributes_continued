@@ -98,7 +98,7 @@ Any protected attributes violation raises `ActiveModel::MassAssignmentSecurity::
 
 ## Contributing
 
-For quicker feedback during gem development or debugging feel free to use the provided `rake console` task. It is defined within the `Rakefile`.
+For quicker feedback during gem development or debugging feel free to use the provided `rake console` task. It is defined within the [`Rakefile`](https://github.com/westonganger/protected_attributes_continued/blob/master/Rakefile).
 
 We test multiple versions of `Rails` using the `appraisal` gem. Please use the following steps to test using `appraisal`.
 

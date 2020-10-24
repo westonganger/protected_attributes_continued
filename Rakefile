@@ -8,7 +8,17 @@ Rake::TestTask.new do |t|
   t.ruby_opts = ['-w']
 end
 
-task :default => :test
+task default: [:test, :warn]
+
+task :warn do
+  puts
+  puts "Warning:"
+  puts "We support testing of multiple Rails versions with the appraisal gem"
+  puts "Before creating a PR please ensure the following command succeeeds:"
+  puts
+  puts "bundle exec appraisal install && bundle exec appraisal rake test"
+  puts
+end
 
 task :console do
   require 'sqlite3'
