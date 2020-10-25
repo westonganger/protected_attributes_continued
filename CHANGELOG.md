@@ -2,10 +2,15 @@
 
 ## Unreleased
 
+* Nothing yet
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.7.0...master)
+
+## 1.7.0 - 2020-10-24
+
 * [#20](https://github.com/westonganger/protected_attributes_continued/pull/20) - Fix bug when calling `first_or_initialize` on an association relation
 * [60da8e1](https://github.com/westonganger/protected_attributes_continued/commit/60da8e1deee54da97546c5ad3fe38c3385a8e5e8) - Add warning at end of default rake task to highlight the requirement to run the tests with `appraisal`
 * [c38a230](https://github.com/westonganger/protected_attributes_continued/commit/c38a230b310fdb42662dad6bdd46e15ab3d3489d) - Added db setup and reloading to `rake console` task for easier debugging
-* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.6.0...master)
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.6.0...v1.7.0)
 
 ## 1.6.0 - 2020-10-01
 
