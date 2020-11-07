@@ -118,9 +118,24 @@ While I do utilize this gem in some legacy projects. The latest approach I have 
 ```ruby
 ### Model
 class Post < ActiveRecord::Base
+  has_many :comments
+
+  accepts_nested_attributes_for :comments, allow_destroy: true
+  
   def self.strong_params(params)
-    params.permit(:post).permit(:name, :content, :published_at)
+    params.permit(:post).permit(PERMITTED_ATTRIBUTES)
   end
+  
+  PERMITTED_PARAMETERS = [
+    :id,
+    :name,
+    :content,
+    :published_at,
+    {
+      comments_attributes: Comment::PERMITTED_PARAMETERS,
+    }
+  ].freeze
+  
 end
 
 ### Controller
