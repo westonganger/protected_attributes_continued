@@ -123,7 +123,7 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :comments, allow_destroy: true
   
   def self.strong_params(params)
-    params.permit(:post).permit(PERMITTED_ATTRIBUTES)
+    params.permit(:post).permit(*PERMITTED_ATTRIBUTES)
   end
   
   PERMITTED_PARAMETERS = [
