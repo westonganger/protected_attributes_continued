@@ -7,16 +7,16 @@ if ActiveRecord::VERSION::MAJOR >= 6
       undef :create!
 
       def build(attributes = nil, options = {}, &block)
-        @association.build(attributes, options, &block)
+        scoping { @association.build(attributes, options, &block) }
       end
       alias new build
 
       def create(attributes = nil, options = {}, &block)
-        @association.create(attributes, options, &block)
+        scoping { @association.create(attributes, options, &block) }
       end
 
       def create!(attributes = nil, options = {}, &block)
-        @association.create!(attributes, options, &block)
+        scoping { @association.create!(attributes, options, &block) }
       end
     end
   end
