@@ -4,7 +4,7 @@
 
 * Nothing yet
 * [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.7.0...master)
-* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/master...foxlance:fix/remove_deprecated_scope_block_on_association_relation) - Fix bug when calling `first_or_create` on an association relation.
+* [#21](https://github.com/westonganger/protected_attributes_continued/pull/21) - Fix leaky scope with `first_or_create` on Rails 5.2+
 
 ## 1.7.0 - 2020-10-24
 

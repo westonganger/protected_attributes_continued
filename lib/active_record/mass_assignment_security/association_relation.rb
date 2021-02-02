@@ -5,28 +5,29 @@ module ActiveRecord
     undef :create!
 
     def build(attributes = nil, options = {}, &block)
-      return scoping { @association.build(attributes, options, &block) } if less_than_v52
-
-      @association.build(attributes, options, &block)
+      if ActiveRecord::VERSION::STRING.to_f < 5.2
+        scoping { @association.build(attributes, options, &block) }
+      else
+        @association.build(attributes, options, &block)
+      end
     end
     alias new build
 
     def create(attributes = nil, options = {}, &block)
-      return scoping { @association.create(attributes, options, &block) } if less_than_v52
-
-      @association.create(attributes, options, &block)
+      if ActiveRecord::VERSION::STRING.to_f < 5.2
+        scoping { @association.create(attributes, options, &block) }
+      else
+        @association.create(attributes, options, &block)
+      end
     end
 
     def create!(attributes = nil, options = {}, &block)
-      return scoping { @association.create!(attributes, options, &block) } if less_than_v52
-
-      @association.create!(attributes, options, &block)
+      if ActiveRecord::VERSION::STRING.to_f < 5.2
+        scoping { @association.create!(attributes, options, &block) }
+      else
+        @association.create!(attributes, options, &block)
+      end
     end
 
-    private
-
-    def less_than_v52
-      ActiveRecord::VERSION::MAJOR <= 4 || (ActiveRecord::VERSION::MAJOR == 5 && ActiveRecord::VERSION::MINOR <= 1)
-    end
   end
 end
