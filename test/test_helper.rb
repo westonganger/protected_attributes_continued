@@ -5,4 +5,6 @@ require 'rails'
 
 Rails.backtrace_cleaner.remove_silencers!
 
-ActiveSupport.test_order = :random if ActiveSupport.respond_to?(:test_order)
+if ActiveSupport.respond_to?(:test_order)
+  #ActiveSupport.test_order = :random ### :random causes occasional ActiveRecord::RecordNotUnique on primary key
+end 

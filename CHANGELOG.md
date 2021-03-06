@@ -3,9 +3,13 @@
 ## Unreleased
 
 * Nothing yet
-* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.7.0...master)
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.8.0...master)
+
+## 1.8.0 - 2021-03-06
+
 * [#22](https://github.com/westonganger/protected_attributes_continued/issues/22) - Do not raise connection error on `attr_accessible` and `attr_protected` if database does not yet exist
 * [#21](https://github.com/westonganger/protected_attributes_continued/pull/21) - Fix leaky scope with `first_or_create` on Rails 5.2+
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.7.0...v1.8.0)
 
 ## 1.7.0 - 2020-10-24
 
