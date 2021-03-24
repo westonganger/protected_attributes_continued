@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* Nothing yet
+* [#23](https://github.com/westonganger/protected_attributes_continued/pull/23) - Fix bug introdcued in [#21](https://github.com/westonganger/protected_attributes_continued/pull/21) & `v1.8.0` where the scope chain on associations wasnt preserving the values
 * [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.8.0...master)
 
 ## 1.8.0 - 2021-03-06
