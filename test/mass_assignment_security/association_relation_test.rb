@@ -10,4 +10,22 @@ class AssociationRelationTest < ActiveSupport::TestCase
     group = Group.create
     assert_nothing_raised { group.memberships.where("1=1").first_or_create }
   end
+
+  test "build passes scoped attributes" do
+    group = Group.create
+    membership = group.memberships.where(pirate_id: 1).build
+    assert_equal(1, membership.pirate_id)
+  end
+
+  test "create passes scoped attributes" do
+    group = Group.create
+    membership = group.memberships.where(pirate_id: 1).create
+    assert_equal(1, membership.pirate_id)
+  end
+
+  test "create! passes scoped attributes" do
+    group = Group.create
+    membership = group.memberships.where(pirate_id: 1).create!
+    assert_equal(1, membership.pirate_id)
+  end
 end
