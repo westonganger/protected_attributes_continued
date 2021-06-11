@@ -92,7 +92,23 @@ module ActiveRecord
     end
 
     class HasManyThroughAssociation
-      if ActiveRecord.version >= Gem::Version.new('5.2.3')
+      if ActiveRecord.version >= Gem::Version.new('6.1')
+        undef :build_through_record
+        def build_through_record(record)
+          @through_records[record] ||= begin
+            ensure_mutable
+
+            attributes = through_scope_attributes
+            attributes[source_reflection.name] = record
+            attributes[source_reflection.foreign_type] = options[:source_type] if options[:source_type]
+
+            # Pass in `without_protection: true` here because `options_for_through_record`
+            # was removed in https://github.com/rails/rails/pull/35799
+            through_association.build(attributes, without_protection: true)
+          end
+        end
+        private :build_through_record
+      elsif ActiveRecord.version >= Gem::Version.new('5.2.3')
         undef :build_through_record
         def build_through_record(record)
           @through_records[record.object_id] ||= begin
