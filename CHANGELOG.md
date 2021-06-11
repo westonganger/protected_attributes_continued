@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* Nothing yet
+* [#25](https://github.com/westonganger/protected_attributes_continued/pull/25) - Fix for Rails 6.1+ - The override of `build_through_record` was putting the new through_records in the wrong place and making it so that they would not be saved when the root record was a new record
 * [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.8.1...master)
 
 ## 1.8.1 - 2021-03-24
