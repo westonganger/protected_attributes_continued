@@ -55,6 +55,18 @@ module ActiveRecord
         end
       end
       private :create_record
+
+      if ActiveRecord.version >= Gem::Version.new("6.0.4") && ActiveRecord.version < Gem::Version.new("6.1")
+        undef :build_record
+
+        def build_record(attributes, options)
+          previous = klass.current_scope(true) if block_given?
+          super
+        ensure
+          klass.current_scope = previous if previous
+        end
+        private :build_record
+      end
     end
 
     class CollectionProxy
