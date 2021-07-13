@@ -2,9 +2,14 @@
 
 ## Unreleased
 
+* Nothing yet
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.8.2...master)
+
+## v1.8.2 - 2021-07-13
+
 * [#26](https://github.com/westonganger/protected_attributes_continued/pull/26) - Fix for Rails 6.0.x where CollectionAssociation defines its own implementation of build_record
 * [#25](https://github.com/westonganger/protected_attributes_continued/pull/25) - Fix for Rails 6.1+ - The override of `build_through_record` was putting the new through_records in the wrong place and making it so that they would not be saved when the root record was a new record
-* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.8.1...master)
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.8.1...v1.8.2)
 
 ## 1.8.1 - 2021-03-24
 
