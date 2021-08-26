@@ -126,13 +126,13 @@ class Post < ActiveRecord::Base
     params.permit(:post).permit(*PERMITTED_ATTRIBUTES)
   end
   
-  PERMITTED_PARAMETERS = [
+  PERMITTED_ATTRIBUTES = [
     :id,
     :name,
     :content,
     :published_at,
     {
-      comments_attributes: Comment::PERMITTED_PARAMETERS,
+      comments_attributes: Comment::PERMITTED_ATTRIBUTES,
     }
   ].freeze
   
