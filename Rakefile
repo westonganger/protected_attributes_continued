@@ -28,10 +28,10 @@ task :console do
   class Post < ActiveRecord::Base; end
 
   def reload!
-    setup
+    setup_db_and_data
   end
 
-  def setup
+  def setup_db_and_data
     import 'protected_attributes_continued' ### import method will re-require the file regardless if its loaded or not
 
     ActiveRecord::Base.establish_connection(
