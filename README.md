@@ -1,7 +1,7 @@
 # Protected Attributes Continued
 <a href="https://badge.fury.io/rb/protected_attributes_continued" target="_blank"><img height="21" style='border:0px;height:21px;' border='0' src="https://badge.fury.io/rb/protected_attributes_continued.svg" alt="Gem Version"></a>
 <a href='https://github.com/westonganger/protected_attributes_continued/actions' target='_blank'><img src="https://github.com/westonganger/protected_attributes_continued/workflows/Tests/badge.svg" style="max-width:100%;" height='21' style='border:0px;height:21px;' border='0' alt="CI Status"></a>
-<a href='https://rubygems.org/gems/protected_attributes_continued' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://ruby-gem-downloads-badge.herokuapp.com/protected_attributes_continued?label=rubygems&type=total&total_label=downloads&color=brightgreen' border='0' alt='RubyGems Downloads' /></a>
+<a href='https://rubygems.org/gems/protected_attributes_continued' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://img.shields.io/gem/dt/protected_attributes_continued?color=brightgreen&label=Rubygems%20Downloads' border='0' alt='RubyGems Downloads' /></a>
 
 > This is the community continued version of [`protected_attributes`](https://github.com/rails/protected_attributes) for Rails 5+. The Rails team dropped this feature and switched to `strong_parameters`. However some applications simply cannot be upgraded or the reduced granularity in params management is a non-issue. To continue supporting this feature going forward we continue the work here.
 
