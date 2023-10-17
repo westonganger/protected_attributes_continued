@@ -2,8 +2,13 @@
 
 ## Unreleased
 
+* Nothing yet
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.9.0...master)
+
+## v1.9.0 - 2023-10-17
+
 * [#31](https://github.com/westonganger/protected_attributes_continued/pull/31) - Fix SchemaMigration parent class mistmatch for Rails 7.1+
-* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.8.2...master)
+* [View Full Diff](https://github.com/westonganger/protected_attributes_continued/compare/v1.8.2...v1.9.0)
 
 ## v1.8.2 - 2021-07-13
 
