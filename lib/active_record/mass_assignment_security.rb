@@ -21,6 +21,8 @@ class ActiveRecord::Base
   include ActiveRecord::MassAssignmentSecurity::Inheritance
 end
 
-class ActiveRecord::SchemaMigration < ActiveRecord::Base
-  attr_accessible :version
+if ActiveRecord.version <= Gem::Version.new("7.0")
+  class ActiveRecord::SchemaMigration < ActiveRecord::Base
+    attr_accessible :version
+  end
 end
