@@ -25,17 +25,13 @@ jobs:
           - ruby: "3.3"
           ### TEST RAILS VERSIONS
           - ruby: "2.6"
-            env:
-              RAILS_VERSION: "5.1"
+            rails_version: "~> 5.1"
           - ruby: "2.6"
-            env:
-              RAILS_VERSION: "5.2"
+            rails_version: "~> 5.2"
           - ruby: "2.6"
-            env:
-              RAILS_VERSION: "6.0"
+            rails_version: "~> 6.0"
           - ruby: "2.6"
-            env:
-              RAILS_VERSION: "6.1"
+            rails_version: "~> 6.1"
           ### TEST NON-DEFAULT DATABASES
           - ruby: "3.3"
             db_gem: "mysql2"
@@ -69,10 +65,11 @@ jobs:
           echo "DATABASE_URL=postgres://postgres:password@localhost:5432/test" >> "$GITHUB_ENV"
         fi
 
-    - name: Set env DB_GEM
-      if: ${{ matrix.db_gem }}
+    - name: Set env variables
       run: |
+        echo "RAILS_VERSION=${{ matrix.rails_version }}" >> "$GITHUB_ENV"
         echo "DB_GEM=${{ matrix.db_gem }}" >> "$GITHUB_ENV"
+        echo "DB_GEM_VERSION=${{ matrix.db_gem_version }}" >> "$GITHUB_ENV"
 
     - name: Install ruby
       uses: ruby/setup-ruby@v1
