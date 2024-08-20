@@ -9,4 +9,9 @@ end
 gem 'rails', get_env("RAILS_VERSION")
 
 db_gem = get_env("DB_GEM") || "sqlite3"
-gem db_gem
+
+if db_gem == "sqlite3"
+  gem db_gem, "~> 1.4"
+else
+  gem db_gem
+end

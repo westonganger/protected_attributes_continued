@@ -36,12 +36,6 @@ jobs:
           - ruby: "2.6"
             env:
               RAILS_VERSION: "6.1"
-          - ruby: "3.3"
-            env:
-              RAILS_VERSION: "7.0"
-          - ruby: "3.3"
-            env:
-              RAILS_VERSION: "7.1"
           ### TEST NON-DEFAULT DATABASES
           - ruby: "3.3"
             db_gem: "mysql2"

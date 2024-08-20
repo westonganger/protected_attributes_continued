@@ -5,6 +5,8 @@
 
 > This is the community continued version of [`protected_attributes`](https://github.com/rails/protected_attributes) for Rails 5+. The Rails team dropped this feature and switched to `strong_parameters`. However some applications simply cannot be upgraded or the reduced granularity in params management is a non-issue. To continue supporting this feature going forward we continue the work here.
 
+> This gem only supports Rails 5.0 to Rails 6.1. Starting in Rails 7.0 some API's have been changed and this gem will not be updated to support it, please transition to strong params or the suggested alternative approach at the bottom of the readme.
+
 Protect attributes from mass-assignment in Active Record models. This gem adds the class methods `attr_accessible` and `attr_protected` to declare white or black lists of attributes.
 
 
